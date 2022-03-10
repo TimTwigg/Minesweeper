@@ -1,3 +1,5 @@
+# updated 10 March 2022
+
 import tkinter as tk
 from tkinter import scrolledtext, ttk
 from game import Minesweeper
@@ -19,11 +21,16 @@ class Game(tk.Tk):
         self.time_var.set("0:00:00")
         self.bomb_var = tk.StringVar()
 
+        self.bind("<Key>", self._key_press)
+
         self._draw()
         self.running = self.after(1000, self.update)
         self.insert_records()
         self.start = time.time()
         self.mainloop()
+
+    def _key_press(self, event):
+        self.game._key_press(event)
 
     def _draw(self):
         """

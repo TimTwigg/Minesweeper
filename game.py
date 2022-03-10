@@ -1,3 +1,5 @@
+# updated 10 March 2022
+
 import tkinter as tk
 from tkinter import simpledialog
 import math
@@ -104,6 +106,7 @@ class Minesweeper(tk.LabelFrame):
         self.bomb_remaining = self.bomb_count
         self.bombs = []
         self.switch = switch
+
         for i in range(self.dimension):
             self.grid_columnconfigure(i, minsize = 40)
             self.grid_rowconfigure(i, minsize = 40)
@@ -121,6 +124,17 @@ class Minesweeper(tk.LabelFrame):
         if not self.record_file.exists():
             self.record_file.touch()
         self.start = time.time()
+
+    def _key_press(self, event):
+        b = self.winfo_containing(event.x_root, event.y_root)
+        if (type(b) != tk.Button):
+            return
+        if event.char == "x":
+            b.config(text = "X" if b.cget("text") == "" else "")
+            self.test_complete()
+            self._count_bombs_remaining()
+        elif event.char == "z":
+            b.master._activate()
 
     def _place_bombs(self):
         """
