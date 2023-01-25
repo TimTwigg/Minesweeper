@@ -1,4 +1,4 @@
-# updated 10 March 2022
+# updated 24 January 2023
 
 import tkinter as tk
 from tkinter import simpledialog
@@ -102,7 +102,7 @@ class Minesweeper(tk.LabelFrame):
         self.root = root
         self.widgets = []
         self.dimension = dimension
-        self.bomb_count = int(math.sqrt(1.5**dimension) + 5)
+        self.bomb_count = int(math.sqrt(1.5**dimension) + (5 if dimension > 6 else math.ceil(dimension / 2)))
         self.bomb_remaining = self.bomb_count
         self.bombs = []
         self.switch = switch
