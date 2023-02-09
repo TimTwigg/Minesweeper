@@ -1,4 +1,4 @@
-# updated 10 March 2022
+# updated 9 February 2023
 
 import tkinter as tk
 from tkinter import scrolledtext, ttk
@@ -30,7 +30,10 @@ class Game(tk.Tk):
         self.mainloop()
 
     def _key_press(self, event):
-        self.game._key_press(event)
+        if (event.char == " "):
+            self.new_game()
+        else:
+            self.game._key_press(event)
 
     def _draw(self):
         """
